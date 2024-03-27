@@ -14,4 +14,4 @@ const RestaurantSchema = new mongoose.Schema({
     dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }]
 });
 
-const RestaurantsModel: Model<Restaurant> = mongoose.model<Restaurant>('Restaurant', RestaurantSchema);
+export const RestaurantsModel: Model<Restaurant> = mongoose.model<Restaurant>('Restaurant', RestaurantSchema);
