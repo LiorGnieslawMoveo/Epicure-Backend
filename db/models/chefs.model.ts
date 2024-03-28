@@ -1,11 +1,12 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { IRestaurant } from "./restaurants.model";
 
-interface Chef extends Document {
+export interface IChef extends Document {
     name: string;
     image: string,
     description: string,
     chefOfTheWeek: Boolean,
-    restaurants: Schema.Types.ObjectId[]
+    restaurants: IRestaurant[]
 }
 
 const ChefSchema = new mongoose.Schema({
@@ -17,4 +18,4 @@ const ChefSchema = new mongoose.Schema({
 
 });
 
-export const ChefsModel: Model<Chef> = mongoose.model<Chef>('Chef', ChefSchema);
+export const ChefsModel = mongoose.model<IChef>('Chef', ChefSchema);

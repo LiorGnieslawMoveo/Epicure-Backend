@@ -1,5 +1,4 @@
 import { Error } from 'mongoose';
-import { DishesModel } from '../../db/models/dishes.model';
 import { RestaurantsModel } from '../../db/models/restaurants.model';
 
 export const addNewRestaurant = async (restaurantData: any) => {
@@ -14,9 +13,9 @@ export const addNewRestaurant = async (restaurantData: any) => {
 
 export const getAllRestaurants = async () => {
     try {
-        const restaurants = await RestaurantsModel.find({})
+        console.log('all')
+        const restaurants = await RestaurantsModel.find()
             .populate('chef')
-            .populate('dishes')
             .exec();
         return restaurants;
     } catch (error: any) {
@@ -26,9 +25,10 @@ export const getAllRestaurants = async () => {
 
 export const getRestaurantById = async (id: string) => {
     try {
-        const restaurants = await RestaurantsModel.findById({})
+        console.log('by id')
+        const cleanedId = id.trim();
+        const restaurants = await RestaurantsModel.findById(cleanedId)
             .populate('chef')
-            .populate('dishes')
             .exec();
         return restaurants;
     } catch (error: any) {
@@ -39,13 +39,13 @@ export const getRestaurantById = async (id: string) => {
 
 export const updateRestaurantById = async (restaurantData: any, id: string) => {
     try {
+        const cleanedId = id.trim();
         await RestaurantsModel.findByIdAndUpdate(
-            { _id: id },
+            cleanedId,
             restaurantData,
             { new: true }
         )
             .populate('chef')
-            .populate('dishes')
             .exec();
     } catch (error: any) {
         throw new Error(error.message);
@@ -54,9 +54,11 @@ export const updateRestaurantById = async (restaurantData: any, id: string) => {
 
 export const deleteRestaurantById = async (id: string) => {
     try {
+        console.log('deleting')
+        const cleanedId = id.trim();
         await RestaurantsModel.findByIdAndUpdate(
-            { _id: id },
-            { $set: { deleted: true } }
+            cleanedId,
+            { deleted: true }
         )
     } catch (error: any) {
         throw new Error(error.message);

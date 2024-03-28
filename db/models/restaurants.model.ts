@@ -1,17 +1,21 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
+import { IDish } from "./dishes.model";
+import { IChef } from "./chefs.model";
 
-interface Restaurant extends Document {
-    name: string,
-    image: string,
-    chef: Schema.Types.ObjectId,
-    dishes: Schema.Types.ObjectId[]
+export interface IRestaurant extends Document {
+    name: string;
+    image: string;
+    deleted: boolean;
+    chef: IChef;
+    dishes: IDish[];
 }
 
 const RestaurantSchema = new mongoose.Schema({
     name: String,
     image: String,
-    chef: { type: mongoose.Schema.Types.ObjectId, ref: 'Chef' },
-    dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }]
+    deleted: { type: Boolean, default: false },
+    chef: { type: Schema.Types.ObjectId, ref: 'Chef' },
+    dishes: [{ type: Schema.Types.ObjectId, ref: 'Dish' }]
 });
 
-export const RestaurantsModel: Model<Restaurant> = mongoose.model<Restaurant>('Restaurant', RestaurantSchema);
+export const RestaurantsModel = mongoose.model<IRestaurant>('Restaurant', RestaurantSchema);
