@@ -3,7 +3,7 @@ import { IRestaurant } from './restaurants.model';
 import { IconMeaning } from "../../src/shared/enums";
 
 export interface IDish extends Document {
-    name: string;
+    title: string;
     image: string;
     price: string;
     deleted: boolean;
@@ -13,7 +13,7 @@ export interface IDish extends Document {
 }
 
 const DishSchema = new Schema({
-    name: String,
+    title: String,
     image: String,
     price: String,
     deleted: { type: Boolean, default: false },

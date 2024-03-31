@@ -12,6 +12,8 @@ import { loadData } from '../db/epicureDB/loadData';
 
 const PORT = process.env.PORT || 4000;
 const app: Express = express();
+
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api/restaurants', restaurantRouter);
@@ -27,6 +29,6 @@ startServer();
 
 async function startServer() {
     await initDB();
-    // await loadData();
+    await loadData();
     app.listen(PORT, () => console.log(`Server is up at ${PORT}`));
 }

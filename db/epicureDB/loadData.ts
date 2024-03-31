@@ -4,7 +4,7 @@ import { DishesModel, IDish } from '../models/dishes.model';
 import { ChefsModel, IChef } from '../models/chefs.model';
 import { IconMeaning } from "../../src/shared/enums";
 
-async function createRestaurant(title: string, restaurantImage: string, subtitle: string, rating: string, dishesData: any, chefOfTheWeekData: any) {
+async function createRestaurant(title: string, restaurantImage: string, subtitle: string, rating: Number, dishesData: any, chefOfTheWeekData: any) {
     try {
         let chef = await ChefsModel.findOne({ name: subtitle });
         if (!chef) {
@@ -28,7 +28,7 @@ async function createRestaurant(title: string, restaurantImage: string, subtitle
                 let dish = await DishesModel.findOne({ name: dishData.title });
                 if (!dish) {
                     dish = new DishesModel({
-                        name: dishData.title,
+                        title: dishData.title,
                         image: dishData.image,
                         price: dishData.price.toString(),
                         ingredients: dishData.description.split(", "),
@@ -40,8 +40,8 @@ async function createRestaurant(title: string, restaurantImage: string, subtitle
             }
 
             restaurant = new RestaurantsModel({
-                name: title,
-                restaurantImage: restaurantImage,
+                title: title,
+                image: restaurantImage,
                 rating: rating,
                 deleted: false,
                 chef: chef._id,
@@ -64,7 +64,7 @@ const restaurantsData = [
         title: "Claro",
         image: "https://s3-alpha-sig.figma.com/img/868d/15e4/c3a1aa1bfb70ad4213eb3d21cb0a095a?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HfTKKrC~Xd3bVJ27LR~Rx~OJmk-dBGv9iewAU9zYOWCZlPbVZ6~P2skQyWaGt-4ksoZqNK44705qXlTwCjVhQlCXFhfq85tvbB4zP~3jcCg26Ci2HVhcDR7gXQMhrnW8QBckeOylaFuNEtgP~WOVDBC6x-t0TYYvXV8-1qVj5zJwHN1fskIBZP7GuqRpr6leYJBqA6egSBRAjPjk8~aV4pZ9J13TXgRi~PCp9VKRz6P~JX~7odkWDRUxTRRHgaR-unq6S0sdqSt~SPEE9f8QylTwxdocvaOBHp2mS9bEfQ4n5nMR-yXiamBD8mXm6IUTdBQcMa0q-bwfQS6yDcoFAQ__",
         subtitle: "Ran Shmueli",
-        rating: "FourStars",
+        rating: 4,
         dishes: [
             {
                 title: "Pad Ki Mao",
@@ -86,7 +86,7 @@ const restaurantsData = [
         title: "Onza",
         image: "https://s3-alpha-sig.figma.com/img/3364/2f99/35966d2dc88a312455bfcc2d806af889?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PxdaHK5BCZ5V9n5v5F8876slDkUXgiAyur4KDEfiMt-~q1EM9xoiUt0VoahBfS6II0Z5C4uWZjZ-F59MZyroJRYAcVprtCFvaY-swviEDrxpayRXhAXm6PSIt9zrXQNevxIMd4PR2wIDZyOWFrpiIV3m7H6gyN2bEkkR8FENDtYj9Y5lPcT7IMuGK5wYX4rYy-OODa82grnAh573PaHt4-8KIsKF-LdkTb4~6oVHx8Ts2cZwrK3wwNZ66vvyVleoB3wC81x8SucFnSrhyfnaTMWzX-1nTkwsQF~QEZnZTN~-thdS4DFcJHCm3FA6n-G6OYVx5Sumjie3HMTD6~A26w__",
         subtitle: "Guy Rozmarin",
-        rating: "ThreeStars",
+        rating: 3,
         dishes: [
             {
                 title: "Red Farm",
@@ -108,7 +108,7 @@ const restaurantsData = [
         title: "Kab Kem",
         image: "https://s3-alpha-sig.figma.com/img/15f3/248b/cd0b41673fd3f1efc286ad79bd13d7e5?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Y3GhV1f-OHZ-4xuR~i1IT~SjjgzF1Fr4Hg3GZTYHPpRxQqDeD4rSQFBESvRtJWtCoEUl28kWmPIcp5X8P3K4aYrrlTn5ASubcjf0CcM-PxCuFmeVxfdUEYsPrqT800oSIDPZINvNERUiROunxyzIBNCZwz0KYr3l8PKXiFDOdKbUX0M9KTnN44NO0~2-Ru43Xk1Jvj-vvOMfwoHCa22~E5O2K269qRzO9GtMXDpRxE56TbFn7SZ21-USO4I8bOHCLifOHp6IFD8Ur8U1c~Dix9d6x0RyAlQwQumKHiLngFAlCp-hkwJJ6TYjXWlMYqlCTVSwkh2QagQjk2buqHFDZA__",
         subtitle: "Yariv Malili",
-        rating: "TwoStars",
+        rating: 2,
         dishes: [
             {
                 title: "Pizza",
@@ -123,7 +123,7 @@ const restaurantsData = [
         title: "Nitan Thai",
         image: "https://s3-alpha-sig.figma.com/img/e4c8/9917/f6704ce9e7d0a2f1ff3a0531f50880f9?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=i8o99oqdN9RzrzNQMCglWAx9xardMtqUoxZtYFkltVw~EP4V9jAZdsGzb5-~Nqsxjsv7TmqDhKuSN-nO3KLqNHykcmO7izii7hp4oODuojs2VI22V24MBn8d4qNi8ju0ItotWHfdoa5DEtliVenJjWnl2h2~SNSzFN6AmSaD0klya~QGrcrI~7qhtCTgy2mKZpmYGkFsMD6F2ChTqwVI3reD4e0RD5dptKXgVzBCj1Fihu0aWbXZ8fJw7~ZmxkX34kaGWdgHCZdJVz0SDanaGBKSfn1hIhGddyiUXa4QiqnQxAUju66oMdLJe~BJmg705aWoaRQebmw7AIV41SpWYQ__",
         subtitle: "Shahaf Shabtay",
-        rating: "OneStar",
+        rating: 1,
         dishes: [
             {
                 title: "Garbanzo Frito",
@@ -138,7 +138,7 @@ const restaurantsData = [
         title: "Tiger Lilly",
         image: "https://s3-alpha-sig.figma.com/img/3576/5c67/fcbfbed8fe1dce8d9796c757e0a9f0ff?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QNnkW60843hdseJD8v2McZkczB~wMPB1DBeILzepGN6JXMx5bcsMV0diDbYdtVD2wTSGwE8ut8YIA96p79lyyOQY0efcTCyDF-nA72lZiegQOcF0ApnhQcO5-jZsQXuEV6ALMjL9Ty8LuozuCUkQAT0mL0DI5Tzfx3tB7JXz9~f6weGjCqDzuR32zbV4SZA0qR69wUQViPS0cehSDgnoYytvZVwfg4zsZGgtvl38Xa5iUHqT6ezcYrm5o4qcYj2Z1Cc3vlVJXDkQ8WvxT7Ivaq2gf6mbQad1XrzX9zXyzGytJ9R95LvJMbEcwtkFNveFIAfhlItNXu2RQ4NOd6i4fA__",
         subtitle: "Yanir Green",
-        rating: "FourStars",
+        rating: 4,
         dishes: [
             {
                 title: "Pizza",
@@ -153,7 +153,7 @@ const restaurantsData = [
         title: "Ya Pan",
         image: "https://s3-alpha-sig.figma.com/img/54b2/906a/432b047e9fc8fd209015032d096a8202?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n4sqUxgsaKwUf6Byoq8-qG~q-tXBg8ofgzy27fGcQWCBWZlyDy9FFAejHOOK7uSfsiJo9eMgv8Wq21RMhdpqta3rylw8Az8I6RDlJNfUA9Cf0xf~t3IStyuVrMBNQiynp6--m20HRXXqU6RIJlvy9i7jeuaw1gR8XLfs~WkGcJoEA5OtgxvDXy9~UhP2ivDfebMaUQ7iLEQJ-pjdeAsPBXtYOYUU1sXWGF~kYrB-wJj6m8ANKNsFZ~msLYJEMMYwy8bP5oXaXm9k1s92xrgq9ol~diagOuTevV7JlO0mWKtRb4v8puIojP~PXvaOBG~mPCtX3B0R6y1ViIkcuE~sAw__",
         subtitle: "Yuval Ben Moshe",
-        rating: "TwoStars",
+        rating: 2,
         dishes: [
             {
                 title: "Garbanzo Frito",
@@ -168,7 +168,7 @@ const restaurantsData = [
         title: "Messa",
         image: "https://s3-alpha-sig.figma.com/img/adc1/c0a8/826a7820e6071efc5ed184218d4e3193?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FPQO5ikB~GAapxmThOnx7oObDdLSQ1ayczQ~QCfYdDK7vaimcKoGii3Ag5VszYPdNDyZaFVA3k6446cTJ3k6DyqQVXpvOpokJhCshb7~H9gHh7hC-PRzy0p8SJgqJfg7t~9wKop7kFK0Z-owWr9XrCA4fXlQ59VzCtTQngyjaGX47tVYPKOy8lb29QUrGylAoLo8mXlrzMlqXrZeh5QAVtz6e8R3EirMIj3WmHpKy3eDTUqKeR3Ss9w6ZwfrNbzJOZqRszPAX7ZCCUyNo5W61tEgmJzl0tQLtLsYMcLHbvyKIcjyg-3uBr8pBumpNEnsffCWzoiQLSLPaQGJjGIKpw__",
         subtitle: "Aviv Moshe",
-        rating: "OneStar",
+        rating: 1,
         dishes: [
             {
                 title: "Pizza",
@@ -183,21 +183,21 @@ const restaurantsData = [
         title: "Jasmino",
         image: "https://s3-alpha-sig.figma.com/img/3364/2f99/35966d2dc88a312455bfcc2d806af889?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PxdaHK5BCZ5V9n5v5F8876slDkUXgiAyur4KDEfiMt-~q1EM9xoiUt0VoahBfS6II0Z5C4uWZjZ-F59MZyroJRYAcVprtCFvaY-swviEDrxpayRXhAXm6PSIt9zrXQNevxIMd4PR2wIDZyOWFrpiIV3m7H6gyN2bEkkR8FENDtYj9Y5lPcT7IMuGK5wYX4rYy-OODa82grnAh573PaHt4-8KIsKF-LdkTb4~6oVHx8Ts2cZwrK3wwNZ66vvyVleoB3wC81x8SucFnSrhyfnaTMWzX-1nTkwsQF~QEZnZTN~-thdS4DFcJHCm3FA6n-G6OYVx5Sumjie3HMTD6~A26w__",
         subtitle: "Yossi Shitrit",
-        rating: "FourStars",
+        rating: 3,
         dishes: []
     },
     {
         title: "Kitchen Market",
         image: "https://s3-alpha-sig.figma.com/img/5209/515e/cfc01ace5fbccb9616c956c889eb5640?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SIujE3RDeC-ggk9QtKt2K6bymx2xiow2NW83NCKgIkkryJPne6FZPKZRnEITSBSvYODNgHpto0gcHtbCE14ymHAjj~b7FdpAbb4cyZVcdddH4OmpC05kelj~gz0GLAHbtg8AOlwXiJlWqBVV~LqVLZxmkZ4SyPZAvS4ltGaCOzPNXBbPTLkrFdr99Q9RmmGXMi~ybZvcH-ps3EDbop~hACAEOhr7aboDqYOACkPrcOjXGnTr8Ew3ugFekb~uDIWnd7aXArtkZHBAIqC9UsNlLShrTG9mxuYeyENu-38TiT-zYQhRhbNsyQdWAtFbtt2Y3IVG0t2hQ4KnPm1SRO84Kw__",
         subtitle: "Yossi Shitrit",
-        rating: "FourStars",
+        rating: 4,
         dishes: []
     },
     {
         title: "Mashya",
         image: "https://s3-alpha-sig.figma.com/img/49ec/0d9b/367cb15f5771ee176e9c30b188942644?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PvwVAelx0r74mSY5NLEmwngjKBdnH0-2NtYu9jg8tOJ2rPcqVb2fbIi9JIPc~i4w4seWwRa9FzwDvkPsSm6xgZn0bh5nqkkIyjqBXYJLZwdz4X9WtIDVO73pO~inWZDRdMwwLo92MqnSUgMH6z~FBln9qowsA4ZG4vUILBoeIpg6sirmIhWgvPy7mTkiieoYCgeidQlNjrNtZRrDXNtHzfkgorgLm7pJVKFrTWOj1c9VqeYRehR4C3WioiTBRyoHfCK0Lw-3Hh4G7U3iUARvTLeGjkScVppCbkMl9y0b~XGjhiK7~iIdhS7qP6NSSde3YTsR-GI5AcznDgrfJklz9g__",
         subtitle: "Yossi Shitrit",
-        rating: "FourStars",
+        rating: 5,
         dishes: []
     }
 ];
