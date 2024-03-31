@@ -5,7 +5,6 @@ export const addNewRestaurant = async (restaurantData: any) => {
     try {
         const newRestaurant = new RestaurantsModel({ ...restaurantData, });
         await newRestaurant.save();
-        return await RestaurantsModel.create(restaurantData);
     } catch (error: any) {
         throw new Error(error.message);
     }
