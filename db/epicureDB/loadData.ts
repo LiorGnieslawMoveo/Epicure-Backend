@@ -31,7 +31,8 @@ async function createRestaurant(title: string, restaurantImage: string, subtitle
                         title: dishData.title,
                         image: dishData.image,
                         price: dishData.price.toString(),
-                        ingredients: dishData.description.split(", "),
+                        iconMeaning: dishData.iconMeaning,
+                        description: dishData.description.split(", "),
                         deleted: false
                     });
                     await dish.save();
@@ -72,35 +73,6 @@ const restaurantsData = [
                 description: "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
                 iconMeaning: IconMeaning.SPICY,
                 price: 88
-            },
-            {
-                title: "Ta Ma La Ko",
-                image: "https://s3-alpha-sig.figma.com/img/99e5/c701/f2696ee9d6e4cb77fb808ddeb96f5352?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p2vum1AL6guS76kWcgZKOW31l4Ll5I9mnLUmANRrKiBihSUwqu~jm0IwMOSTo-IQxK6c9-0Bh67F53TYJx4imEbXIet2H6syI2KY-nBsCBcupldFGUcBW7834YjBNmuN1j~K6lSXpgNcT6xbBmx6vJMhj4niYXc0-C4s0asM4s~oNXhvvKi7oTb4aeM9G-VZqp-R7nWJ5DH8-GHR48K9dBSjpk07gvyd69gacajFxQ7AebBZtIVX5r62L3d9S3lufq21u9XyGWm9nVNfINARhpiSoRDs0oD4lyEBcMCqDkgn43fv2LeJS0ZIi3Elj6OKukKqTF7Z-j5N031xWmqklg__",
-                description: "Green Papaya, Mango, Chukka Chili, Mint, Kaffir lime, Cashew, Akaya Cham sauce",
-                iconMeaning: IconMeaning.VEGAN,
-                price: 98
-            }
-        ]
-    },
-    {
-        title: "Onza",
-        image: "https://s3-alpha-sig.figma.com/img/3364/2f99/35966d2dc88a312455bfcc2d806af889?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PxdaHK5BCZ5V9n5v5F8876slDkUXgiAyur4KDEfiMt-~q1EM9xoiUt0VoahBfS6II0Z5C4uWZjZ-F59MZyroJRYAcVprtCFvaY-swviEDrxpayRXhAXm6PSIt9zrXQNevxIMd4PR2wIDZyOWFrpiIV3m7H6gyN2bEkkR8FENDtYj9Y5lPcT7IMuGK5wYX4rYy-OODa82grnAh573PaHt4-8KIsKF-LdkTb4~6oVHx8Ts2cZwrK3wwNZ66vvyVleoB3wC81x8SucFnSrhyfnaTMWzX-1nTkwsQF~QEZnZTN~-thdS4DFcJHCm3FA6n-G6OYVx5Sumjie3HMTD6~A26w__",
-        subtitle: "Guy Rozmarin",
-        rating: 3,
-        dishes: [
-            {
-                title: "Red Farm",
-                image: "https://s3-alpha-sig.figma.com/img/a288/1b2f/ae8225cf3599f1c1030a2f0db612e225?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Q54hdvZ-vMk1gZE0DeUigns8dsSuNwtCj15IpfQLSWMJa5HnSfUjiDuJmyjuVDoX2FqIrCFi92lB3CNXtUQu52AieiVQmDNPZ4Wu0qEOZBGTz7Co0v68FCYlK7tbKR6MZSnEpBaglAhZMrfc54jcR1ce5FbmclQex7DAG1LExy7hIgfSculkk-6v-BjOtbCeBm3v4-U~lOV~m~byBbmMlyLoEY0FcOWNQXnEA-pT1CDVrmveZ8jSmkM1ddj3aDFNz1-iInhqEFC-LGVJQXMczROaYFiE-Mk2~vx8L~zUVX1fZ9h-95CKAHYeSK4b7JMa2e0L6ULmrb15AYqYj4sxCg__",
-                description: "Tofu, Spekkoek Peanuts, Spicy Manis, Pear Yakitori",
-                iconMeaning: IconMeaning.VEGI,
-                price: 98
-            },
-            {
-                title: "Garbanzo Frito",
-                image: "https://s3-alpha-sig.figma.com/img/fad3/833e/ef4a5437c9ed2d59faca58b36ba47058?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VEaF8p-s~F57FvyLWGNLr1fdx-WqkojBDD1-F5d9AeW-UKY6KrfMWFb6GqFpM3WazH4sfPE~53BFD8u6Ojp2zetiIq8O7c3NJIlYORlO3QDnw69w1H5~LaB9Jn96P3KV3A-GVwkotS8lOCYD~KI3YOPIVlJizyES3nx5P1ijKZRNa7JSsCq-6LRkJcarj4PhjzpvbgfCiv8IuoJHge2FhqUrdSeJ3fZzeAn-h8RntD3uLreRfn3fUMc~cDOxLUvSlqEodLOlVR5mzhirIuxfSMj-LFVW6GehqKLhi88VJWuFnrfi51yegjfCD-6fE1-i103gZpZ56COUlieU04iXCA__",
-                description: "Polenta fingers, veal cheek, magic chili cured lemoncream, yellow laksa",
-                iconMeaning: IconMeaning.VEGAN,
-                price: 98
             }
         ]
     },
@@ -111,11 +83,25 @@ const restaurantsData = [
         rating: 2,
         dishes: [
             {
-                title: "Pizza",
-                image: "https://s3-alpha-sig.figma.com/img/5209/515e/cfc01ace5fbccb9616c956c889eb5640?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SIujE3RDeC-ggk9QtKt2K6bymx2xiow2NW83NCKgIkkryJPne6FZPKZRnEITSBSvYODNgHpto0gcHtbCE14ymHAjj~b7FdpAbb4cyZVcdddH4OmpC05kelj~gz0GLAHbtg8AOlwXiJlWqBVV~LqVLZxmkZ4SyPZAvS4ltGaCOzPNXBbPTLkrFdr99Q9RmmGXMi~ybZvcH-ps3EDbop~hACAEOhr7aboDqYOACkPrcOjXGnTr8Ew3ugFekb~uDIWnd7aXArtkZHBAIqC9UsNlLShrTG9mxuYeyENu-38TiT-zYQhRhbNsyQdWAtFbtt2Y3IVG0t2hQ4KnPm1SRO84Kw__",
-                description: "Dough, Mozzarella Cheese, Tomato Sauce, Mushrooms, Onions, Olives",
-                iconMeaning: IconMeaning.SPICY,
-                price: 78
+                title: "Garbanzo Frito",
+                image: "https://s3-alpha-sig.figma.com/img/fad3/833e/ef4a5437c9ed2d59faca58b36ba47058?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VEaF8p-s~F57FvyLWGNLr1fdx-WqkojBDD1-F5d9AeW-UKY6KrfMWFb6GqFpM3WazH4sfPE~53BFD8u6Ojp2zetiIq8O7c3NJIlYORlO3QDnw69w1H5~LaB9Jn96P3KV3A-GVwkotS8lOCYD~KI3YOPIVlJizyES3nx5P1ijKZRNa7JSsCq-6LRkJcarj4PhjzpvbgfCiv8IuoJHge2FhqUrdSeJ3fZzeAn-h8RntD3uLreRfn3fUMc~cDOxLUvSlqEodLOlVR5mzhirIuxfSMj-LFVW6GehqKLhi88VJWuFnrfi51yegjfCD-6fE1-i103gZpZ56COUlieU04iXCA__",
+                description: "Polenta fingers, veal cheek, magic chili cured lemoncream, yellow laksa",
+                iconMeaning: IconMeaning.VEGAN,
+                price: 98
+            }
+        ]
+    },
+    {
+        title: "Messa",
+        image: "https://s3-alpha-sig.figma.com/img/adc1/c0a8/826a7820e6071efc5ed184218d4e3193?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FPQO5ikB~GAapxmThOnx7oObDdLSQ1ayczQ~QCfYdDK7vaimcKoGii3Ag5VszYPdNDyZaFVA3k6446cTJ3k6DyqQVXpvOpokJhCshb7~H9gHh7hC-PRzy0p8SJgqJfg7t~9wKop7kFK0Z-owWr9XrCA4fXlQ59VzCtTQngyjaGX47tVYPKOy8lb29QUrGylAoLo8mXlrzMlqXrZeh5QAVtz6e8R3EirMIj3WmHpKy3eDTUqKeR3Ss9w6ZwfrNbzJOZqRszPAX7ZCCUyNo5W61tEgmJzl0tQLtLsYMcLHbvyKIcjyg-3uBr8pBumpNEnsffCWzoiQLSLPaQGJjGIKpw__",
+        subtitle: "Aviv Moshe",
+        rating: 1,
+        dishes: [
+            {
+                title: "Ta Ma La Ko",
+                image: "https://s3-alpha-sig.figma.com/img/99e5/c701/f2696ee9d6e4cb77fb808ddeb96f5352?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p2vum1AL6guS76kWcgZKOW31l4Ll5I9mnLUmANRrKiBihSUwqu~jm0IwMOSTo-IQxK6c9-0Bh67F53TYJx4imEbXIet2H6syI2KY-nBsCBcupldFGUcBW7834YjBNmuN1j~K6lSXpgNcT6xbBmx6vJMhj4niYXc0-C4s0asM4s~oNXhvvKi7oTb4aeM9G-VZqp-R7nWJ5DH8-GHR48K9dBSjpk07gvyd69gacajFxQ7AebBZtIVX5r62L3d9S3lufq21u9XyGWm9nVNfINARhpiSoRDs0oD4lyEBcMCqDkgn43fv2LeJS0ZIi3Elj6OKukKqTF7Z-j5N031xWmqklg__",
+                iconMeaning: IconMeaning.VEGAN,
+                price: 98
             }
         ]
     },
@@ -126,10 +112,9 @@ const restaurantsData = [
         rating: 1,
         dishes: [
             {
-                title: "Garbanzo Frito",
-                image: "https://s3-alpha-sig.figma.com/img/fad3/833e/ef4a5437c9ed2d59faca58b36ba47058?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VEaF8p-s~F57FvyLWGNLr1fdx-WqkojBDD1-F5d9AeW-UKY6KrfMWFb6GqFpM3WazH4sfPE~53BFD8u6Ojp2zetiIq8O7c3NJIlYORlO3QDnw69w1H5~LaB9Jn96P3KV3A-GVwkotS8lOCYD~KI3YOPIVlJizyES3nx5P1ijKZRNa7JSsCq-6LRkJcarj4PhjzpvbgfCiv8IuoJHge2FhqUrdSeJ3fZzeAn-h8RntD3uLreRfn3fUMc~cDOxLUvSlqEodLOlVR5mzhirIuxfSMj-LFVW6GehqKLhi88VJWuFnrfi51yegjfCD-6fE1-i103gZpZ56COUlieU04iXCA__",
-                description: "Polenta fingers, veal cheek, magic chili cured lemoncream, yellow laksa",
-                iconMeaning: IconMeaning.SPICY,
+                title: "Ta Ma La Ko",
+                image: "https://s3-alpha-sig.figma.com/img/99e5/c701/f2696ee9d6e4cb77fb808ddeb96f5352?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p2vum1AL6guS76kWcgZKOW31l4Ll5I9mnLUmANRrKiBihSUwqu~jm0IwMOSTo-IQxK6c9-0Bh67F53TYJx4imEbXIet2H6syI2KY-nBsCBcupldFGUcBW7834YjBNmuN1j~K6lSXpgNcT6xbBmx6vJMhj4niYXc0-C4s0asM4s~oNXhvvKi7oTb4aeM9G-VZqp-R7nWJ5DH8-GHR48K9dBSjpk07gvyd69gacajFxQ7AebBZtIVX5r62L3d9S3lufq21u9XyGWm9nVNfINARhpiSoRDs0oD4lyEBcMCqDkgn43fv2LeJS0ZIi3Elj6OKukKqTF7Z-j5N031xWmqklg__",
+                iconMeaning: IconMeaning.VEGAN,
                 price: 98
             }
         ]
@@ -165,41 +150,50 @@ const restaurantsData = [
         ]
     },
     {
-        title: "Messa",
-        image: "https://s3-alpha-sig.figma.com/img/adc1/c0a8/826a7820e6071efc5ed184218d4e3193?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FPQO5ikB~GAapxmThOnx7oObDdLSQ1ayczQ~QCfYdDK7vaimcKoGii3Ag5VszYPdNDyZaFVA3k6446cTJ3k6DyqQVXpvOpokJhCshb7~H9gHh7hC-PRzy0p8SJgqJfg7t~9wKop7kFK0Z-owWr9XrCA4fXlQ59VzCtTQngyjaGX47tVYPKOy8lb29QUrGylAoLo8mXlrzMlqXrZeh5QAVtz6e8R3EirMIj3WmHpKy3eDTUqKeR3Ss9w6ZwfrNbzJOZqRszPAX7ZCCUyNo5W61tEgmJzl0tQLtLsYMcLHbvyKIcjyg-3uBr8pBumpNEnsffCWzoiQLSLPaQGJjGIKpw__",
-        subtitle: "Aviv Moshe",
-        rating: 1,
-        dishes: [
-            {
-                title: "Pizza",
-                image: "https://s3-alpha-sig.figma.com/img/5209/515e/cfc01ace5fbccb9616c956c889eb5640?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SIujE3RDeC-ggk9QtKt2K6bymx2xiow2NW83NCKgIkkryJPne6FZPKZRnEITSBSvYODNgHpto0gcHtbCE14ymHAjj~b7FdpAbb4cyZVcdddH4OmpC05kelj~gz0GLAHbtg8AOlwXiJlWqBVV~LqVLZxmkZ4SyPZAvS4ltGaCOzPNXBbPTLkrFdr99Q9RmmGXMi~ybZvcH-ps3EDbop~hACAEOhr7aboDqYOACkPrcOjXGnTr8Ew3ugFekb~uDIWnd7aXArtkZHBAIqC9UsNlLShrTG9mxuYeyENu-38TiT-zYQhRhbNsyQdWAtFbtt2Y3IVG0t2hQ4KnPm1SRO84Kw__",
-                description: "Dough, Mozzarella Cheese, Tomato Sauce, Mushrooms, Onions, Olives",
-                iconMeaning: IconMeaning.SPICY,
-                price: 78
-            }
-        ]
-    },
-    {
-        title: "Jasmino",
+        title: "Onza",
         image: "https://s3-alpha-sig.figma.com/img/3364/2f99/35966d2dc88a312455bfcc2d806af889?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PxdaHK5BCZ5V9n5v5F8876slDkUXgiAyur4KDEfiMt-~q1EM9xoiUt0VoahBfS6II0Z5C4uWZjZ-F59MZyroJRYAcVprtCFvaY-swviEDrxpayRXhAXm6PSIt9zrXQNevxIMd4PR2wIDZyOWFrpiIV3m7H6gyN2bEkkR8FENDtYj9Y5lPcT7IMuGK5wYX4rYy-OODa82grnAh573PaHt4-8KIsKF-LdkTb4~6oVHx8Ts2cZwrK3wwNZ66vvyVleoB3wC81x8SucFnSrhyfnaTMWzX-1nTkwsQF~QEZnZTN~-thdS4DFcJHCm3FA6n-G6OYVx5Sumjie3HMTD6~A26w__",
         subtitle: "Yossi Shitrit",
         rating: 3,
-        dishes: []
+        dishes: [
+            {
+                title: "Red Farm",
+                image: "https://s3-alpha-sig.figma.com/img/a288/1b2f/ae8225cf3599f1c1030a2f0db612e225?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Q54hdvZ-vMk1gZE0DeUigns8dsSuNwtCj15IpfQLSWMJa5HnSfUjiDuJmyjuVDoX2FqIrCFi92lB3CNXtUQu52AieiVQmDNPZ4Wu0qEOZBGTz7Co0v68FCYlK7tbKR6MZSnEpBaglAhZMrfc54jcR1ce5FbmclQex7DAG1LExy7hIgfSculkk-6v-BjOtbCeBm3v4-U~lOV~m~byBbmMlyLoEY0FcOWNQXnEA-pT1CDVrmveZ8jSmkM1ddj3aDFNz1-iInhqEFC-LGVJQXMczROaYFiE-Mk2~vx8L~zUVX1fZ9h-95CKAHYeSK4b7JMa2e0L6ULmrb15AYqYj4sxCg__",
+                description: "Tofu, Spekkoek Peanuts, Spicy Manis, Pear Yakitori",
+                iconMeaning: IconMeaning.VEGI,
+                price: 98
+            }
+        ]
     },
     {
         title: "Kitchen Market",
         image: "https://s3-alpha-sig.figma.com/img/5209/515e/cfc01ace5fbccb9616c956c889eb5640?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SIujE3RDeC-ggk9QtKt2K6bymx2xiow2NW83NCKgIkkryJPne6FZPKZRnEITSBSvYODNgHpto0gcHtbCE14ymHAjj~b7FdpAbb4cyZVcdddH4OmpC05kelj~gz0GLAHbtg8AOlwXiJlWqBVV~LqVLZxmkZ4SyPZAvS4ltGaCOzPNXBbPTLkrFdr99Q9RmmGXMi~ybZvcH-ps3EDbop~hACAEOhr7aboDqYOACkPrcOjXGnTr8Ew3ugFekb~uDIWnd7aXArtkZHBAIqC9UsNlLShrTG9mxuYeyENu-38TiT-zYQhRhbNsyQdWAtFbtt2Y3IVG0t2hQ4KnPm1SRO84Kw__",
         subtitle: "Yossi Shitrit",
         rating: 4,
-        dishes: []
+        dishes: [
+            {
+                title: "Pad Ki Mao",
+                image: "https://s3-alpha-sig.figma.com/img/2e67/b1b2/d214756da8c972edb6e1ab3b02c205d4?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cxImKvZg2RugsYxx0nHfc1UmhgbuPBpjtvdLumSEGXG2qV9pMO9v6lCk0zev9GvkMJAt38uxY1HeNtDiOtAU22L~Zpxhpy9ERUDBcUo9ip4UHzXogOXQarOPA8BN9qQ6G1gYY27T~O0NJnLxKn26JlGpprTisokFbns1pZH3-YfNu75geqGy2tP9gNNhyiBfCEkPnCuZMCLKYQ1xyZFw6wuviMooktk4~QNZtMMMWnT9AJzXDtNA9iRI9omYeFgUoZnLY6xBh195YCcjCeV1PXQHdfum7JP0KvL3FdQawetC6jIe78ocizBrnEr-EkmNmJNAAivhgj4HKrm~zCfzbQ__",
+                description: "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
+                iconMeaning: IconMeaning.SPICY,
+                price: 88
+            }
+        ]
     },
     {
         title: "Mashya",
-        image: "https://s3-alpha-sig.figma.com/img/49ec/0d9b/367cb15f5771ee176e9c30b188942644?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PvwVAelx0r74mSY5NLEmwngjKBdnH0-2NtYu9jg8tOJ2rPcqVb2fbIi9JIPc~i4w4seWwRa9FzwDvkPsSm6xgZn0bh5nqkkIyjqBXYJLZwdz4X9WtIDVO73pO~inWZDRdMwwLo92MqnSUgMH6z~FBln9qowsA4ZG4vUILBoeIpg6sirmIhWgvPy7mTkiieoYCgeidQlNjrNtZRrDXNtHzfkgorgLm7pJVKFrTWOj1c9VqeYRehR4C3WioiTBRyoHfCK0Lw-3Hh4G7U3iUARvTLeGjkScVppCbkMl9y0b~XGjhiK7~iIdhS7qP6NSSde3YTsR-GI5AcznDgrfJklz9g__",
+        image: "https://s3-alpha-sig.figma.com/img/3364/2f99/35966d2dc88a312455bfcc2d806af889?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PxdaHK5BCZ5V9n5v5F8876slDkUXgiAyur4KDEfiMt-~q1EM9xoiUt0VoahBfS6II0Z5C4uWZjZ-F59MZyroJRYAcVprtCFvaY-swviEDrxpayRXhAXm6PSIt9zrXQNevxIMd4PR2wIDZyOWFrpiIV3m7H6gyN2bEkkR8FENDtYj9Y5lPcT7IMuGK5wYX4rYy-OODa82grnAh573PaHt4-8KIsKF-LdkTb4~6oVHx8Ts2cZwrK3wwNZ66vvyVleoB3wC81x8SucFnSrhyfnaTMWzX-1nTkwsQF~QEZnZTN~-thdS4DFcJHCm3FA6n-G6OYVx5Sumjie3HMTD6~A26w__",
         subtitle: "Yossi Shitrit",
-        rating: 5,
-        dishes: []
-    }
+        rating: 3,
+        dishes: [
+            {
+                title: "Pad Ki Mao",
+                image: "https://s3-alpha-sig.figma.com/img/2e67/b1b2/d214756da8c972edb6e1ab3b02c205d4?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cxImKvZg2RugsYxx0nHfc1UmhgbuPBpjtvdLumSEGXG2qV9pMO9v6lCk0zev9GvkMJAt38uxY1HeNtDiOtAU22L~Zpxhpy9ERUDBcUo9ip4UHzXogOXQarOPA8BN9qQ6G1gYY27T~O0NJnLxKn26JlGpprTisokFbns1pZH3-YfNu75geqGy2tP9gNNhyiBfCEkPnCuZMCLKYQ1xyZFw6wuviMooktk4~QNZtMMMWnT9AJzXDtNA9iRI9omYeFgUoZnLY6xBh195YCcjCeV1PXQHdfum7JP0KvL3FdQawetC6jIe78ocizBrnEr-EkmNmJNAAivhgj4HKrm~zCfzbQ__",
+                description: "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
+                iconMeaning: IconMeaning.SPICY,
+                price: 88
+            }
+        ]
+    },
 ];
 
 const chefOfTheWeekData =

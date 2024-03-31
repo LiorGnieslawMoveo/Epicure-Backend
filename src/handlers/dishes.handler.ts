@@ -14,7 +14,7 @@ export const getAllDishes = async () => {
     try {
         console.log('all dishes')
         const dishes = await DishesModel.find()
-            .populate('ingredients')
+            .populate('description')
             .exec();
         return dishes;
     } catch (error: any) {
@@ -27,7 +27,7 @@ export const getDishById = async (id: string) => {
         console.log('dishes by id')
         const cleanedId = id.trim();
         const dishes = await DishesModel.findById(cleanedId)
-            .populate('ingredients')
+            .populate('description')
             .exec();
         return dishes;
     } catch (error: any) {
@@ -44,7 +44,7 @@ export const updateDishById = async (dishData: any, id: string) => {
             dishData,
             { new: true }
         )
-            .populate('ingredients')
+            .populate('description')
             .exec();
     } catch (error: any) {
         throw new Error(error.message);

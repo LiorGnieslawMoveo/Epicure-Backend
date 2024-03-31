@@ -8,7 +8,7 @@ export interface IDish extends Document {
     price: string;
     deleted: boolean;
     iconMeaning: IconMeaning,
-    ingredients: string[];
+    description: string[];
     restaurant: IRestaurant;
 }
 
@@ -18,7 +18,7 @@ const DishSchema = new Schema({
     price: String,
     deleted: { type: Boolean, default: false },
     iconMeaning: { type: String, enum: Object.values(IconMeaning) },
-    ingredients: [String],
+    description: [String],
     restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }
 });
 
