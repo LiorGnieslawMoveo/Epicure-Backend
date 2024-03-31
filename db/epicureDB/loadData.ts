@@ -100,6 +100,7 @@ const restaurantsData = [
             {
                 title: "Ta Ma La Ko",
                 image: "https://s3-alpha-sig.figma.com/img/99e5/c701/f2696ee9d6e4cb77fb808ddeb96f5352?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p2vum1AL6guS76kWcgZKOW31l4Ll5I9mnLUmANRrKiBihSUwqu~jm0IwMOSTo-IQxK6c9-0Bh67F53TYJx4imEbXIet2H6syI2KY-nBsCBcupldFGUcBW7834YjBNmuN1j~K6lSXpgNcT6xbBmx6vJMhj4niYXc0-C4s0asM4s~oNXhvvKi7oTb4aeM9G-VZqp-R7nWJ5DH8-GHR48K9dBSjpk07gvyd69gacajFxQ7AebBZtIVX5r62L3d9S3lufq21u9XyGWm9nVNfINARhpiSoRDs0oD4lyEBcMCqDkgn43fv2LeJS0ZIi3Elj6OKukKqTF7Z-j5N031xWmqklg__",
+                description: "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
                 iconMeaning: IconMeaning.VEGAN,
                 price: 98
             }
@@ -114,6 +115,7 @@ const restaurantsData = [
             {
                 title: "Ta Ma La Ko",
                 image: "https://s3-alpha-sig.figma.com/img/99e5/c701/f2696ee9d6e4cb77fb808ddeb96f5352?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=p2vum1AL6guS76kWcgZKOW31l4Ll5I9mnLUmANRrKiBihSUwqu~jm0IwMOSTo-IQxK6c9-0Bh67F53TYJx4imEbXIet2H6syI2KY-nBsCBcupldFGUcBW7834YjBNmuN1j~K6lSXpgNcT6xbBmx6vJMhj4niYXc0-C4s0asM4s~oNXhvvKi7oTb4aeM9G-VZqp-R7nWJ5DH8-GHR48K9dBSjpk07gvyd69gacajFxQ7AebBZtIVX5r62L3d9S3lufq21u9XyGWm9nVNfINARhpiSoRDs0oD4lyEBcMCqDkgn43fv2LeJS0ZIi3Elj6OKukKqTF7Z-j5N031xWmqklg__",
+                description: "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
                 iconMeaning: IconMeaning.VEGAN,
                 price: 98
             }
