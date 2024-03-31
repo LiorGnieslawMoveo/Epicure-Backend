@@ -48,3 +48,12 @@ export const deleteChefById = async (req: Request, res: Response) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const getChefOfTheWeek = async (req: Request, res: Response) => {
+    try {
+        const chefOfTheWeek = await chefHandler.getChefOfTheWeek();
+        res.json(chefOfTheWeek);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};

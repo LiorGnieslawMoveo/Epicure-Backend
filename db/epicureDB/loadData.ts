@@ -17,6 +17,7 @@ async function createRestaurant(title: string, restaurantImage: string, subtitle
             if (chef.name === chefOfTheWeekData.name) {
                 chef.description = chefOfTheWeekData.description;
                 chef.image = chefOfTheWeekData.image;
+                chef.chefOfTheWeek = true;
             }
             await chef.save();
         }

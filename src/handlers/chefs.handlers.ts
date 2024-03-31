@@ -63,3 +63,12 @@ export const deleteChefById = async (id: string) => {
         throw new Error(error.message);
     }
 };
+
+export const getChefOfTheWeek = async () => {
+    try {
+        const chefOfTheWeek = await ChefsModel.findOne({ chefOfTheWeek: true }).populate('restaurants').exec();
+        return chefOfTheWeek;
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+};
