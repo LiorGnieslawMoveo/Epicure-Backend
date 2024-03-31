@@ -16,7 +16,7 @@ export const getAllChefs = async () => {
         const chefs = await ChefsModel.find()
             .populate('restaurants')
             .exec();
-        return chefs;
+        return chefs.filter(chef => !chef.deleted);
     } catch (error: any) {
         throw new Error(error.message);
     }
@@ -26,10 +26,17 @@ export const getChefById = async (id: string) => {
     try {
         console.log('by id')
         const cleanedId = id.trim();
-        const chefs = await ChefsModel.findById(cleanedId)
+        const chef = await ChefsModel.findById(cleanedId)
             .populate('restaurants')
             .exec();
-        return chefs;
+
+        if (!chef) {
+            return null;
+        }
+        if (chef.deleted) {
+            return null;
+        }
+        return chef;
     } catch (error: any) {
         throw new Error(error.message);
     }

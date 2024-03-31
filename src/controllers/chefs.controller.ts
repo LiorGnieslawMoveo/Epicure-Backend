@@ -13,7 +13,6 @@ export const addNewChef = async (req: Request, res: Response) => {
 export const getAllChefs = async (req: Request, res: Response) => {
     try {
         let chefs = await chefHandler.getAllChefs();
-        chefs = chefs.filter(chef => !(chef.deleted === true));
         res.json(chefs);
     } catch (error: any) {
         res.status(500).json({ message: error.message });
@@ -23,7 +22,7 @@ export const getAllChefs = async (req: Request, res: Response) => {
 export const getChefById = async (req: Request, res: Response) => {
     try {
         let chef = await chefHandler.getChefById(req.params.id);
-        if (!chef || chef.deleted) {
+        if (!chef) {
             return res.status(404).json({ message: 'Chef not found' });
         }
         res.json(chef);

@@ -13,7 +13,6 @@ export const addNewRestaurant = async (req: Request, res: Response) => {
 export const getAllRestaurants = async (req: Request, res: Response) => {
     try {
         let restaurants = await restaurantHandler.getAllRestaurants();
-        restaurants = restaurants.filter(restaurant => !(restaurant.deleted === true));
         res.json(restaurants);
     } catch (error: any) {
         res.status(500).json({ message: error.message });
@@ -23,7 +22,7 @@ export const getAllRestaurants = async (req: Request, res: Response) => {
 export const getRestaurantById = async (req: Request, res: Response) => {
     try {
         const restaurant = await restaurantHandler.getRestaurantById(req.params.id);
-        if (!restaurant || restaurant.deleted) {
+        if (!restaurant) {
             return res.status(404).json({ message: 'Restaurant not found' });
         }
         res.json(restaurant);

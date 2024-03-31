@@ -13,7 +13,6 @@ export const addNewDish = async (req: Request, res: Response) => {
 export const getAllDishes = async (req: Request, res: Response) => {
     try {
         let dishes = await dishHandler.getAllDishes();
-        dishes = dishes.filter(dish => !(dish.deleted === true));
         res.json(dishes);
     } catch (error: any) {
         res.status(500).json({ message: error.message });
@@ -23,7 +22,7 @@ export const getAllDishes = async (req: Request, res: Response) => {
 export const getDishById = async (req: Request, res: Response) => {
     try {
         const dish = await dishHandler.getDishById(req.params.id);
-        if (!dish || dish.deleted) {
+        if (!dish) {
             return res.status(404).json({ message: 'Dish not found' });
         }
         res.json(dish);

@@ -16,7 +16,7 @@ export const getAllRestaurants = async () => {
         const restaurants = await RestaurantsModel.find()
             .populate('chef')
             .exec();
-        return restaurants;
+        return restaurants.filter(restaurant => !restaurant.deleted);;
     } catch (error: any) {
         throw new Error(error.message);
     }
@@ -26,10 +26,16 @@ export const getRestaurantById = async (id: string) => {
     try {
         console.log('by id')
         const cleanedId = id.trim();
-        const restaurants = await RestaurantsModel.findById(cleanedId)
+        const restaurant = await RestaurantsModel.findById(cleanedId)
             .populate('chef')
             .exec();
-        return restaurants;
+        if (!restaurant) {
+            return null;
+        }
+        if (restaurant.deleted) {
+            return null;
+        }
+        return restaurant;
     } catch (error: any) {
         throw new Error(error.message);
     }
