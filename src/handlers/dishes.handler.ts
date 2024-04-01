@@ -15,6 +15,7 @@ export const getAllDishes = async () => {
         console.log('all dishes')
         const dishes = await DishesModel.find()
             .populate('description')
+            .populate('restaurant')
             .exec();
         return dishes.filter(dish => !dish.deleted);
     } catch (error: any) {
