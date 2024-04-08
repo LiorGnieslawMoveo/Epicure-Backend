@@ -14,12 +14,23 @@ export const addNewRestaurant = async (restaurantData: any) => {
 
 export const getAllRestaurants = async () => {
     try {
-        console.log('all')
         const restaurants = await RestaurantsModel.find()
             .populate('chef')
             .populate('dishes')
             .exec();
         return restaurants.filter(restaurant => !restaurant.deleted);;
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+};
+
+export const getAllRestaurantsAdmin = async () => {
+    try {
+        const restaurants = await RestaurantsModel.find()
+            .populate('chef')
+            .populate('dishes')
+            .exec();
+        return restaurants;
     } catch (error: any) {
         throw new Error(error.message);
     }

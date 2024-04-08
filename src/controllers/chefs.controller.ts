@@ -19,6 +19,15 @@ export const getAllChefs = async (req: Request, res: Response) => {
     }
 };
 
+export const getAllChefsAdmin = async (req: Request, res: Response) => {
+    try {
+        let chefs = await chefHandler.getAllChefsAdmin();
+        res.json(chefs);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export const getChefById = async (req: Request, res: Response) => {
     try {
         let chef = await chefHandler.getChefById(req.params.id);

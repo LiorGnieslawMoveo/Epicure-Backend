@@ -4,6 +4,7 @@ import * as restaurantController from '../controllers/restaurants.controller';
 const router = express.Router();
 
 router.get('/', restaurantController.getAllRestaurants);
+router.get('/admin', restaurantController.getAllRestaurantsAdmin);
 router.post('/', restaurantController.addNewRestaurant);
 router.get('/:id', restaurantController.getRestaurantById);
 router.put('/:id', restaurantController.updateRestaurantById);

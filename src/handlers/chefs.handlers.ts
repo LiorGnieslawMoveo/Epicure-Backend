@@ -12,11 +12,21 @@ export const addNewChef = async (chefData: any) => {
 
 export const getAllChefs = async () => {
     try {
-        console.log('all')
         const chefs = await ChefsModel.find()
             .populate('restaurants')
             .exec();
         return chefs.filter(chef => !chef.deleted);
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+};
+
+export const getAllChefsAdmin = async () => {
+    try {
+        const chefs = await ChefsModel.find()
+            .populate('restaurants')
+            .exec();
+        return chefs;
     } catch (error: any) {
         throw new Error(error.message);
     }
