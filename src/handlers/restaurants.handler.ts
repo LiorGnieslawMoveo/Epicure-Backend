@@ -1,10 +1,12 @@
 import { Error } from 'mongoose';
 import { RestaurantsModel } from '../../db/models/restaurants.model';
+import { ChefsModel } from '../../db/models/chefs.model';
 
 export const addNewRestaurant = async (restaurantData: any) => {
     try {
         const newRestaurant = new RestaurantsModel({ ...restaurantData, });
-        await newRestaurant.save();
+        const savedRestaurant = await newRestaurant.save();
+        await ChefsModel.findByIdAndUpdate(savedRestaurant.chef, { $push: { restaurants: savedRestaurant._id } }, { new: true, useFindAndModify: false });
     } catch (error: any) {
         throw new Error(error.message);
     }
