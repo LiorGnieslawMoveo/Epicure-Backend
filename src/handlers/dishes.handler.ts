@@ -12,8 +12,6 @@ export const addNewDish = async (dishData: any) => {
     }
 };
 
-
-
 export const getAllDishes = async () => {
     try {
         console.log('all dishes')
@@ -22,6 +20,19 @@ export const getAllDishes = async () => {
             .populate('restaurant')
             .exec();
         return dishes.filter(dish => !dish.deleted);
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+};
+
+export const getAllDishesAdmin = async () => {
+    try {
+        console.log('all dishes')
+        const dishes = await DishesModel.find()
+            .populate('description')
+            .populate('restaurant')
+            .exec();
+        return dishes;
     } catch (error: any) {
         throw new Error(error.message);
     }
