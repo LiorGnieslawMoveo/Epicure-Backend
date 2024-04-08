@@ -1,14 +1,18 @@
 import { Error } from 'mongoose';
 import { DishesModel } from '../../db/models/dishes.model';
+import { RestaurantsModel } from '../../db/models/restaurants.model';
 
 export const addNewDish = async (dishData: any) => {
     try {
         const newDish = new DishesModel({ ...dishData, });
-        await newDish.save();
+        const savedDish = await newDish.save();
+        await RestaurantsModel.findByIdAndUpdate(savedDish.restaurant, { $push: { dishes: savedDish._id } }, { new: true, useFindAndModify: false });
     } catch (error: any) {
         throw new Error(error.message);
     }
 };
+
+
 
 export const getAllDishes = async () => {
     try {
