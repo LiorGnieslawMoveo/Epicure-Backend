@@ -34,7 +34,6 @@ export const getAllChefsAdmin = async () => {
 
 export const getChefById = async (id: string) => {
     try {
-        console.log('by id')
         const cleanedId = id.trim();
         const chef = await ChefsModel.findById(cleanedId)
             .populate('restaurants')
@@ -70,7 +69,6 @@ export const updateChefById = async (chefData: any, id: string) => {
 
 export const deleteChefById = async (id: string) => {
     try {
-        console.log('deleting chef')
         const cleanedId = id.trim();
         await ChefsModel.findByIdAndUpdate(
             cleanedId,

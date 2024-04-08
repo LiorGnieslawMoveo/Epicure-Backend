@@ -14,7 +14,6 @@ export const addNewDish = async (dishData: any) => {
 
 export const getAllDishes = async () => {
     try {
-        console.log('all dishes')
         const dishes = await DishesModel.find()
             .populate('description')
             .populate('restaurant')
@@ -27,7 +26,6 @@ export const getAllDishes = async () => {
 
 export const getAllDishesAdmin = async () => {
     try {
-        console.log('all dishes')
         const dishes = await DishesModel.find()
             .populate('description')
             .populate('restaurant')
@@ -40,7 +38,6 @@ export const getAllDishesAdmin = async () => {
 
 export const getDishById = async (id: string) => {
     try {
-        console.log('dishes by id')
         const cleanedId = id.trim();
         const dish = await DishesModel.findById(cleanedId)
             .populate('description')
@@ -75,7 +72,6 @@ export const updateDishById = async (dishData: any, id: string) => {
 
 export const deleteDishById = async (id: string) => {
     try {
-        console.log('deleting dish')
         const cleanedId = id.trim();
         await DishesModel.findByIdAndUpdate(
             cleanedId,
