@@ -33,7 +33,7 @@ async function createRestaurant(title: string, restaurantImage: string, subtitle
                         price: dishData.price.toString(),
                         iconMeaning: dishData.iconMeaning,
                         description: dishData.description.split(", "),
-                        deleted: false
+                        deleted: false,
                     });
                     await dish.save();
                 }
@@ -52,6 +52,10 @@ async function createRestaurant(title: string, restaurantImage: string, subtitle
 
             chef.restaurants.push(restaurant._id);
             await chef.save();
+
+            for (const dishId of dishes) {
+                await DishesModel.findByIdAndUpdate(dishId, { restaurant: restaurant._id });
+            }
         }
 
         console.log(`Restaurant ${title} created successfully!`);
@@ -72,7 +76,7 @@ const restaurantsData = [
                 image: "https://s3-alpha-sig.figma.com/img/2e67/b1b2/d214756da8c972edb6e1ab3b02c205d4?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cxImKvZg2RugsYxx0nHfc1UmhgbuPBpjtvdLumSEGXG2qV9pMO9v6lCk0zev9GvkMJAt38uxY1HeNtDiOtAU22L~Zpxhpy9ERUDBcUo9ip4UHzXogOXQarOPA8BN9qQ6G1gYY27T~O0NJnLxKn26JlGpprTisokFbns1pZH3-YfNu75geqGy2tP9gNNhyiBfCEkPnCuZMCLKYQ1xyZFw6wuviMooktk4~QNZtMMMWnT9AJzXDtNA9iRI9omYeFgUoZnLY6xBh195YCcjCeV1PXQHdfum7JP0KvL3FdQawetC6jIe78ocizBrnEr-EkmNmJNAAivhgj4HKrm~zCfzbQ__",
                 description: "Shrimps, Glass Noodles, Kemiri Nuts, Shallots, Lemon Grass, Magic Chili Brown Coconut",
                 iconMeaning: IconMeaning.SPICY,
-                price: 88
+                price: 88,
             }
         ]
     },

@@ -19,6 +19,15 @@ export const getAllDishes = async (req: Request, res: Response) => {
     }
 };
 
+export const getAllDishesAdmin = async (req: Request, res: Response) => {
+    try {
+        let dishes = await dishHandler.getAllDishesAdmin();
+        res.json(dishes);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export const getDishById = async (req: Request, res: Response) => {
     try {
         const dish = await dishHandler.getDishById(req.params.id);

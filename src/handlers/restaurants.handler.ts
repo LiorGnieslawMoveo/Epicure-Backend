@@ -1,10 +1,12 @@
 import { Error } from 'mongoose';
 import { RestaurantsModel } from '../../db/models/restaurants.model';
+import { ChefsModel } from '../../db/models/chefs.model';
 
 export const addNewRestaurant = async (restaurantData: any) => {
     try {
         const newRestaurant = new RestaurantsModel({ ...restaurantData, });
-        await newRestaurant.save();
+        const savedRestaurant = await newRestaurant.save();
+        await ChefsModel.findByIdAndUpdate(savedRestaurant.chef, { $push: { restaurants: savedRestaurant._id } }, { new: true, useFindAndModify: false });
     } catch (error: any) {
         throw new Error(error.message);
     }
@@ -12,9 +14,9 @@ export const addNewRestaurant = async (restaurantData: any) => {
 
 export const getAllRestaurants = async () => {
     try {
-        console.log('all')
         const restaurants = await RestaurantsModel.find()
             .populate('chef')
+            .populate('dishes')
             .exec();
         return restaurants.filter(restaurant => !restaurant.deleted);;
     } catch (error: any) {
@@ -22,9 +24,20 @@ export const getAllRestaurants = async () => {
     }
 };
 
+export const getAllRestaurantsAdmin = async () => {
+    try {
+        const restaurants = await RestaurantsModel.find()
+            .populate('chef')
+            .populate('dishes')
+            .exec();
+        return restaurants;
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+};
+
 export const getRestaurantById = async (id: string) => {
     try {
-        console.log('by id')
         const cleanedId = id.trim();
         const restaurant = await RestaurantsModel.findById(cleanedId)
             .populate('chef')
@@ -59,7 +72,6 @@ export const updateRestaurantById = async (restaurantData: any, id: string) => {
 
 export const deleteRestaurantById = async (id: string) => {
     try {
-        console.log('deleting')
         const cleanedId = id.trim();
         await RestaurantsModel.findByIdAndUpdate(
             cleanedId,

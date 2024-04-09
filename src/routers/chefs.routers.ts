@@ -4,6 +4,7 @@ import * as chefController from '../controllers/chefs.controller';
 const router = express.Router();
 
 router.get('/', chefController.getAllChefs);
+router.get('/admin', chefController.getAllChefsAdmin);
 router.post('/', chefController.addNewChef);
 router.get('/chef-of-the-week', chefController.getChefOfTheWeek);
 router.get('/:id', chefController.getChefById);

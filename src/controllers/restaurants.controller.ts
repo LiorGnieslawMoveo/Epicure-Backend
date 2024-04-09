@@ -19,6 +19,15 @@ export const getAllRestaurants = async (req: Request, res: Response) => {
     }
 };
 
+export const getAllRestaurantsAdmin = async (req: Request, res: Response) => {
+    try {
+        let restaurants = await restaurantHandler.getAllRestaurantsAdmin();
+        res.json(restaurants);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export const getRestaurantById = async (req: Request, res: Response) => {
     try {
         const restaurant = await restaurantHandler.getRestaurantById(req.params.id);

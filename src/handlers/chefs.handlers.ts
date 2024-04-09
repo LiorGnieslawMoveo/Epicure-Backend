@@ -12,7 +12,6 @@ export const addNewChef = async (chefData: any) => {
 
 export const getAllChefs = async () => {
     try {
-        console.log('all')
         const chefs = await ChefsModel.find()
             .populate('restaurants')
             .exec();
@@ -22,9 +21,19 @@ export const getAllChefs = async () => {
     }
 };
 
+export const getAllChefsAdmin = async () => {
+    try {
+        const chefs = await ChefsModel.find()
+            .populate('restaurants')
+            .exec();
+        return chefs;
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
+};
+
 export const getChefById = async (id: string) => {
     try {
-        console.log('by id')
         const cleanedId = id.trim();
         const chef = await ChefsModel.findById(cleanedId)
             .populate('restaurants')
@@ -60,7 +69,6 @@ export const updateChefById = async (chefData: any, id: string) => {
 
 export const deleteChefById = async (id: string) => {
     try {
-        console.log('deleting chef')
         const cleanedId = id.trim();
         await ChefsModel.findByIdAndUpdate(
             cleanedId,
